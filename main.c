@@ -1,9 +1,24 @@
 #include <stdio.h>
+char arr[1000];
+int index = 0;
+int isMingan(char x)
+{
+    int count = 0;
+    for(int i=0;i<index;i++){
+        if(x == arr[i]){
+            count++;
+        }
+    }
 
+    if(count == 0){
+        return 0;
+    }else{
+        return 1;
+    }
+
+}
 void main()
 {
-    char arr[1000];
-    int index = 0;
     int code = 0;
 
     printf("进入敏感字符管理系统\n");
@@ -66,39 +81,31 @@ void main()
         }
         if (code == 4) {
 
-            int i =0;
+            printf("请输入一段英文：\n");
 
-            char str[200];
-            printf("请输入一段文字（英文）：\n");
-            
-            scanf("%s",str);
-
-            
-            for(;str[i]!='\0'; i++)
-            {
-                char a = str[i];
-                int j = 0;
-                int flag = 0;
-                
-                for(;j<index; i++)
-                {
-                    if (a == arr[j]){
-                        flag = 1;
-                    }
+            char neirong[1024];        
+            scanf("%s",neirong); 
+                      
+            for(int i = 0;1;i++){               
+                if(neirong[i] == '\0'){
+                    break;
                 }
-                
-                if (flag != 0) {
-                    str[i] = '*';
-                }                              
+
+                if(isMingan(arr[i]) == 1){
+                    neirong[i] = '*';
+                }
+
+                printf("%c",neirong[i]);
+
+
             }
 
-            printf ("%s\n",str);
+            printf("\n");
 
-            printf("点击回车继续\n");
-
+            printf("替换完成，点击回车继续\n");
             char x;
-            scanf("%c",&x);
-            scanf("%c",&x);
+            scanf("%c", &x);
+            scanf("%c", &x);
                                     
         }
         if (code == 5) {
